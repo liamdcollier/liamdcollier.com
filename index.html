@@ -342,9 +342,12 @@
       <h2 class="section__title" id="bg-title">Background</h2>
     </header>
     <figure class="career-diagram">
-      <div class="career-diagram__label">Career operating mode &middot; 2017&ndash;2026</div>
       <div class="career-diagram__scroll">
       <svg class="career-diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Career operating-mode diagram showing six eras from 2017 to 2026, progressing from student to employee to remote contractor to in-house operator to founder, with locations across Wellington, Auckland, Barcelona, Melbourne, New York, and Medellín.">
+
+        <!-- EYEBROW -->
+        <text class="cd-eyb" x="64" y="36">CAREER OPERATING MODE &#183; 2017&#8211;2026</text>
+        <line class="cd-eyb-rule" x1="64" y1="50" x2="1262" y2="50"/>
 
         <!-- MODE BAND LINES -->
         <line class="cd-band" x1="140" y1="104" x2="1262" y2="104"/>
@@ -390,6 +393,7 @@
         <rect class="cd-era" x="860"  y="139" width="240" height="26"/>
         <rect class="cd-era" x="1100" y="91"  width="120" height="26"/>
         <rect class="cd-era" x="1224" y="91"  width="38"  height="26"/>
+        <line class="cd-ongoing" x1="1264" y1="104" x2="1278" y2="104"/>
 
         <!-- TRANSITIONS -->
         <line class="cd-trans" x1="500"  y1="283" x2="500"  y2="261"/>
@@ -402,12 +406,13 @@
         <text class="cd-annot" x="508"  y="252">AKL &#183; NZD &#183; BDO</text>
         <text class="cd-annot" x="748"  y="204">BCN &#183; NZD &#183; BDO</text>
         <text class="cd-annot" x="868"  y="156">MEL &#183; AUD &#183; law firm</text>
-        <text class="cd-annot" x="1108" y="108">NYC &#183; USD &#183; founded</text>
-        <text class="cd-annot" x="1262" y="85"  text-anchor="end">MEL/MDE &#183; AUD/USD &#183; split-base</text>
+        <text class="cd-annot" x="1108" y="108" textLength="108" lengthAdjust="spacingAndGlyphs">NYC &#183; USD &#183; founded</text>
+        <text class="cd-annot" x="1262" y="85"  text-anchor="end">MEL/MDE &#183; AUD/USD</text>
 
         <!-- MEDELLÍN ANNOTATION -->
-        <line class="cd-mde-tick" x1="260" y1="346" x2="260" y2="356"/>
-        <text class="cd-mde-text" x="266" y="368">Medell&#237;n exchange &#183; Spanish acquisition begins</text>
+        <circle class="cd-mde-dot" cx="260" cy="356" r="2"/>
+        <line class="cd-mde-leader" x1="260" y1="358" x2="260" y2="365"/>
+        <text class="cd-mde-text" x="268" y="370">Medell&#237;n exchange &#183; Spanish acquisition begins</text>
       </svg>
       </div>
       <figcaption>Six eras across four countries and three currencies. Each step represents a deliberate progression in operating mode.</figcaption>
