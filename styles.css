@@ -100,6 +100,8 @@
   --c-live:        #10B981;
   --c-production:  #F59E0B;
   --c-internal:    #71717A;
+  --c-refining:    #F59E0B;
+  --c-indev:       #94A3B8;
 
   /* Type stacks */
   --f-display: 'Fraunces', 'Fraunces Fallback', Georgia, 'Times New Roman', serif;
@@ -495,8 +497,8 @@ body {
   flex-shrink: 0;
 }
 .status--live::before        { background: var(--c-live); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
-.status--production::before  { background: var(--c-production); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
-.status--internal::before    { background: var(--c-internal); box-shadow: 0 0 0 3px rgba(113,113,122,0.15); }
+.status--refining::before    { background: var(--c-refining); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
+.status--indev::before       { background: transparent; box-shadow: inset 0 0 0 1px var(--c-indev); }
 
 /* ============================================================
    Section 4 — Architecture diagram (inlined SVG)
@@ -507,7 +509,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1280 / 720;
+  aspect-ratio: 1280 / 760;
 }
 .diagram__scroll {
   margin: 0;

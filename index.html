@@ -89,7 +89,7 @@
       <span class="eyebrow">Section 01</span>
       <h2 class="section__title" id="built-title">Built</h2>
     </header>
-    <p class="section__intro">The infrastructure that runs Infraxus is built solo, by a finance operator. Five years of finance-systems work, applied here. The offer was prototyped through an extended engagement with an Australian IT consulting firm before the firm was launched. Same architectural register throughout: structured, documented, designed for the operator working alone.</p>
+    <p class="section__intro">The infrastructure that runs Infraxus is built solo, by a finance operator. Five years of finance-systems work, applied here. The offer was prototyped through an extended engagement with an Australian information technology firm before the firm was launched.</p>
     <ul class="systems" role="list">
       <li class="system">
         <span class="system__num" aria-hidden="true">01</span>
@@ -103,35 +103,35 @@
       <li class="system">
         <span class="system__num" aria-hidden="true">02</span>
         <div class="system__head">
-          <h3 class="system__name">Sales orchestration system</h3>
-          <span class="status status--production">Production</span>
+          <h3 class="system__name"><a href="https://app.infraxus.com/sales">Sales orchestration system</a></h3>
+          <span class="system__url">app.infraxus.com/sales</span>
+          <span class="status status--live">Live</span>
         </div>
-        <p class="system__desc">B2B sales infrastructure replacing a Clay-based stack at one-tenth the cost. Sonnet qualifier, Apollo enrichment, HubSpot orchestration, twelve-inbox cadence, autonomous LinkedIn outreach.</p>
+        <p class="system__desc">B2B sales infrastructure replacing a Clay-based stack at one-tenth the cost. Sonnet qualifier, Apollo enrichment, HubSpot orchestration, twelve-inbox cadence, autonomous LinkedIn outreach. Continuous Opus reasoning loop on a four-hour cadence surfaces patterns and risks via Pushover and morning briefings. Operator dashboard at app.infraxus.com/sales consolidates funnel state, pipeline reality, channel health, and cohort intelligence.</p>
       </li>
       <li class="system">
         <span class="system__num" aria-hidden="true">03</span>
         <div class="system__head">
-          <h3 class="system__name">Sales intelligence reasoning layer</h3>
-          <span class="status status--production">Production</span>
+          <h3 class="system__name">Multi-source financial data integration layer</h3>
+          <span class="status status--indev">In development</span>
         </div>
-        <p class="system__desc">Continuous analytical system above the sales infrastructure. Captures every interaction, runs Opus reasoning on a four-hour cadence, surfaces patterns and risks via Pushover and morning briefings.</p>
+        <p class="system__desc">Direct integration layer between Infraxus Portal and the finance stacks SMBs actually run: Xero, banking via Akahu and Basiq, payroll, and supporting systems. Replaces the current Excel-template ingestion flow. Multi-source authentication, schema mapping, and reconciliation logic feeding the existing Portal data model.</p>
       </li>
       <li class="system">
         <span class="system__num" aria-hidden="true">04</span>
         <div class="system__head">
-          <h3 class="system__name">Seek lead pipeline</h3>
-          <span class="status status--production">Production</span>
+          <h3 class="system__name">Finance reasoning layer</h3>
+          <span class="status status--indev">In development</span>
         </div>
-        <p class="system__desc">Autonomous AU job-listing scraper that converts hiring signals into qualified outbound leads. Runs unsupervised on a daily cadence.</p>
+        <p class="system__desc">Continuous analytical system above the firm&rsquo;s own financial data. Captures every accounting, banking, and payroll event; runs Opus reasoning on a four-hour cadence; surfaces runway implications, anomalies, and pattern shifts via Pushover and morning briefings. Mirrors the architecture of the sales reasoning layer applied to finance.</p>
       </li>
       <li class="system">
         <span class="system__num" aria-hidden="true">05</span>
         <div class="system__head">
-          <h3 class="system__name"><a href="https://app.infraxus.com/sales">Sales Command Center</a></h3>
-          <span class="system__url">app.infraxus.com/sales</span>
-          <span class="status status--internal">Internal</span>
+          <h3 class="system__name">Board pack generator</h3>
+          <span class="status status--refining">Refining</span>
         </div>
-        <p class="system__desc">Authenticated operator dashboard consolidating funnel state, pipeline reality, channel health, and cohort intelligence.</p>
+        <p class="system__desc">Automated styled board-pack PDF generated from Portal data on a recurring schedule. First version live in the Portal. Refinement in progress on layout, narrative density, and recurring delivery cadence.</p>
       </li>
     </ul>
   </div>
@@ -148,7 +148,7 @@
     </header>
     <figure class="diagram">
       <div class="diagram__scroll">
-      <svg class="diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Architecture diagram of the Infraxus sales orchestration system. Sources (Sales Nav, Evaboot/Emelia, Dropbox) feed a six-stage 5-minute cron ingestion pipeline (format dispatch, dedup, Apify enrichment, Sonnet 4.6 qualifier, Apollo bulk match, HubSpot write). HubSpot fans out to two channels: Instantly for email and HeyReach for LinkedIn. Replies arrive at webhooks and flow through a two-pass orchestration: Sonnet 4.6 posture pre-classify, then Opus 4.7 classify-and-draft, into the Telegram review bot, then dispatcher, which sends back through the channels. Beneath everything, a reasoning substrate of the Supabase interactions table, a deferred 4-hour Opus reasoning loop, and Pushover alerts.">
+      <svg class="diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 760" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Architecture diagram of the Infraxus sales orchestration system. Sources (Sales Nav, Evaboot/Emelia, Dropbox) feed a six-stage 5-minute cron ingestion pipeline (format dispatch, dedup, Apify enrichment, Sonnet 4.6 qualifier, Apollo bulk match, HubSpot write). HubSpot fans out to two channels: Instantly for email and HeyReach for LinkedIn. Replies arrive at webhooks and flow through a two-pass orchestration: Sonnet 4.6 posture pre-classify, then Opus 4.7 classify-and-draft, into the Telegram review bot, then dispatcher, which sends back through the channels. Beneath everything, a reasoning substrate of the Supabase interactions table, a deferred 4-hour Opus reasoning loop, and Pushover alerts. An operator view band below holds the Sales Command Center dashboard, fed by HubSpot, the reasoning loop, and the dispatcher.">
         <defs>
           <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A1A1A"/></marker>
         </defs>
@@ -294,7 +294,21 @@
         <line class="diag-ad" x1="474" y1="424" x2="474" y2="495"/>
         <line class="diag-ad" x1="1075" y1="368" x2="1075" y2="495"/>
 
-        <g transform="translate(64, 600)">
+        <!-- Operator view -->
+        <line class="diag-ru2" x1="64" y1="596" x2="1216" y2="596"/>
+        <text class="diag-eyb" x="64" y="618">OPERATOR VIEW</text>
+        <line class="diag-ru" x1="64" y1="628" x2="1216" y2="628"/>
+
+        <rect class="diag-b" x="664" y="646" width="552" height="56" rx="2"/>
+        <circle class="diag-live" cx="1204" cy="660" r="3.2"/>
+        <text class="diag-lbl" x="680" y="670">Sales Command Center</text>
+        <text class="diag-sub" x="680" y="688">app.infraxus.com/sales &#183; funnel state &#183; pipeline reality &#183; channel health &#183; cohort intelligence</text>
+
+        <path class="diag-ad" d="M474,424 L474,438 L444,438 L444,640 L890,640 L890,646" marker-end="url(#ah)"/>
+        <path class="diag-ad" d="M639,576 L639,640 L890,640 L890,646" marker-end="url(#ah)"/>
+        <path class="diag-ad" d="M1075,368 L1075,394 L1228,394 L1228,640 L890,640 L890,646" marker-end="url(#ah)"/>
+
+        <g transform="translate(64, 720)">
           <circle class="diag-live" cx="6" cy="6" r="3.2"/>
           <text class="diag-sub" x="18" y="10">Live</text>
           <circle class="diag-prod" cx="80" cy="6" r="3.2"/>
@@ -479,7 +493,7 @@
         <text class="cd-year cd-year-6" x="319" y="410" text-anchor="end">(2026&#8211;)</text>
         <text class="cd-annot2 cd-annot-6" x="128" y="425">AU/US ops &#183; split-base</text>
       </svg>
-      <figcaption>Six eras across four countries and three currencies. Each step represents a deliberate progression in operating mode.</figcaption>
+      <figcaption>Six eras, four countries, ten years.</figcaption>
     </figure>
     <dl class="bg-list">
       <div class="bg-row">
@@ -492,7 +506,7 @@
       </div>
       <div class="bg-row">
         <dt><span class="bg-place">Melbourne</span><span class="bg-date">2023&ndash;2024</span></dt>
-        <dd>Finance Business Partner at a 130-staff mid-tier law firm. Ran the finance brief in board meetings during repeated CFO absences; owned the three-way forecast for ATO and lender reporting; sat across Remuneration Committee discussions including partner-pay analysis. On more than one occasion produced analysis that contradicted the prevailing leadership view. The firm has remained an external advisory client since I left.</dd>
+        <dd>Finance Business Partner at a 130-staff mid-tier law firm. Ran the finance brief in board meetings during repeated CFO absences; owned the three-way forecast for ATO and lender reporting; sat across Remuneration Committee discussions including partner-pay analysis. Through one extended period in mid-2024, ran the firm&rsquo;s finance function solo across CFO, finance manager, analyst, and payroll responsibilities, with one junior staff member supporting. Single-handedly migrated payroll and HR platforms inside one month. On more than one occasion produced analysis that contradicted the prevailing leadership view. The firm has remained an external advisory client since I left.</dd>
       </div>
       <div class="bg-row">
         <dt><span class="bg-place">New York</span><span class="bg-date">2025</span></dt>
@@ -500,7 +514,7 @@
       </div>
       <div class="bg-row">
         <dt><span class="bg-place">Melbourne / Medell&iacute;n</span><span class="bg-date">2026&ndash;present</span></dt>
-        <dd>Operating Infraxus across both bases.</dd>
+        <dd>Operating Infraxus across both bases. Time split between Melbourne and Medell&iacute;n; AU pipeline runs out of Melbourne. The infrastructure layer documented in <a href="#built">Built</a> was constructed across this period; the offer continues to be refined against live engagement data.</dd>
       </div>
     </dl>
   </div>
@@ -517,9 +531,9 @@
     </header>
     <ul class="detail-list" role="list">
       <li><span class="detail__tag">Languages</span><span class="detail__fact">Spanish (fluent), Portuguese (conversational). First lived in Medell&iacute;n on exchange in 2018.</span></li>
-      <li><span class="detail__tag">Credential</span><span class="detail__fact">Graduate Diploma in Chartered Accounting, CA ANZ, 2023.</span></li>
+      <li><span class="detail__tag">Postgraduate</span><span class="detail__fact">Graduate Diploma in Chartered Accounting, CA ANZ, 2023.</span></li>
       <li><span class="detail__tag">Practice</span><span class="detail__fact">Operated own IRD tax agency since 2023, on a referral-only basis. 100% on-time filing two years running.</span></li>
-      <li><span class="detail__tag">Status</span><span class="detail__fact">Australian work rights. Operating between Melbourne and Medell&iacute;n.</span></li>
+      <li><span class="detail__tag">Status</span><span class="detail__fact">New Zealand citizen. Operating between Melbourne and Medell&iacute;n.</span></li>
     </ul>
   </div>
 </section>
