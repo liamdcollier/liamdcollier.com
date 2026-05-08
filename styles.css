@@ -648,7 +648,15 @@ body {
   display: block;
   width: 100%;
   height: auto;
+}
+.career-diagram__svg--desktop {
   aspect-ratio: 1280 / 400;
+}
+.career-diagram__svg--mobile {
+  display: none;
+  aspect-ratio: 327 / 450;
+  max-width: 440px;
+  margin: var(--s-3) auto 0;
 }
 .career-diagram__svg .cd-eyb       { font-family: var(--f-body); font-size: 11px; font-weight: 600; fill: var(--c-muted); letter-spacing: 0.18em; font-feature-settings: "tnum" on, "lnum" on, "ss01" on; }
 .career-diagram__svg .cd-eyb-rule  { stroke: var(--c-rule);   stroke-width: 1; fill: none; }
@@ -696,50 +704,107 @@ body {
   stroke-dashoffset: 100;
 }
 
-/* Phase 1 (0.0–0.30s): structural axis + bands */
-.career-diagram--play .cd-mode      { animation: cd-fade 0.30s ease-out 0.00s both; }
-.career-diagram--play .cd-band      { animation: cd-fade 0.20s ease-out 0.00s both, cd-line-draw 0.40s ease-out 0.00s both; }
-.career-diagram--play .cd-axis-rule { animation: cd-fade 0.20s ease-out 0.00s both, cd-line-draw 0.40s ease-out 0.00s both; }
-.career-diagram--play .cd-tick      { animation: cd-fade 0.20s ease-out calc(0.05s + var(--i, 0) * 0.018s) both; }
-.career-diagram--play .cd-year      { animation: cd-fade 0.20s ease-out calc(0.07s + var(--i, 0) * 0.018s) both; }
+/* Desktop animation timeline — applies at viewport ≥ 768px so the
+   mobile SVG (which shares cd-era-N class names) doesn't inherit
+   desktop pacing. */
+@media (min-width: 768px) {
+  /* Phase 1 (0.0–0.30s): structural axis + bands */
+  .career-diagram--play .cd-mode      { animation: cd-fade 0.30s ease-out 0.00s both; }
+  .career-diagram--play .cd-band      { animation: cd-fade 0.20s ease-out 0.00s both, cd-line-draw 0.40s ease-out 0.00s both; }
+  .career-diagram--play .cd-axis-rule { animation: cd-fade 0.20s ease-out 0.00s both, cd-line-draw 0.40s ease-out 0.00s both; }
+  .career-diagram--play .cd-tick      { animation: cd-fade 0.20s ease-out calc(0.05s + var(--i, 0) * 0.018s) both; }
+  .career-diagram--play .cd-year      { animation: cd-fade 0.20s ease-out calc(0.07s + var(--i, 0) * 0.018s) both; }
 
-/* Era 1 — Student (0.20–0.45s) */
-.career-diagram--play .cd-era-1      { animation: cd-fade 0.25s ease-out 0.20s both, cd-block-draw 0.35s ease-out 0.20s both; }
-.career-diagram--play .cd-annot.cd-annot-1,
-.career-diagram--play .cd-annot2.cd-annot-1 { animation: cd-fade 0.20s ease-out 0.40s both; }
-.career-diagram--play .cd-trans-1    { animation: cd-fade 0.08s ease-out 0.50s both, cd-line-draw 0.08s ease-out 0.50s both; }
+  /* Era 1 — Student (0.20–0.45s) */
+  .career-diagram--play .cd-era-1      { animation: cd-fade 0.25s ease-out 0.20s both, cd-block-draw 0.35s ease-out 0.20s both; }
+  .career-diagram--play .cd-annot.cd-annot-1,
+  .career-diagram--play .cd-annot2.cd-annot-1 { animation: cd-fade 0.20s ease-out 0.40s both; }
+  .career-diagram--play .cd-trans-1    { animation: cd-fade 0.08s ease-out 0.50s both, cd-line-draw 0.08s ease-out 0.50s both; }
 
-/* Era 2 — Employee (0.55–0.80s) */
-.career-diagram--play .cd-era-2      { animation: cd-fade 0.25s ease-out 0.55s both, cd-block-draw 0.35s ease-out 0.55s both; }
-.career-diagram--play .cd-annot.cd-annot-2,
-.career-diagram--play .cd-annot2.cd-annot-2 { animation: cd-fade 0.20s ease-out 0.75s both; }
-.career-diagram--play .cd-trans-2    { animation: cd-fade 0.08s ease-out 0.85s both, cd-line-draw 0.08s ease-out 0.85s both; }
+  /* Era 2 — Employee (0.55–0.80s) */
+  .career-diagram--play .cd-era-2      { animation: cd-fade 0.25s ease-out 0.55s both, cd-block-draw 0.35s ease-out 0.55s both; }
+  .career-diagram--play .cd-annot.cd-annot-2,
+  .career-diagram--play .cd-annot2.cd-annot-2 { animation: cd-fade 0.20s ease-out 0.75s both; }
+  .career-diagram--play .cd-trans-2    { animation: cd-fade 0.08s ease-out 0.85s both, cd-line-draw 0.08s ease-out 0.85s both; }
 
-/* Era 3 — Remote contractor (0.90–1.15s) */
-.career-diagram--play .cd-era-3      { animation: cd-fade 0.25s ease-out 0.90s both, cd-block-draw 0.35s ease-out 0.90s both; }
-.career-diagram--play .cd-annot.cd-annot-3,
-.career-diagram--play .cd-annot2.cd-annot-3 { animation: cd-fade 0.20s ease-out 1.10s both; }
-.career-diagram--play .cd-trans-3    { animation: cd-fade 0.08s ease-out 1.20s both, cd-line-draw 0.08s ease-out 1.20s both; }
+  /* Era 3 — Remote contractor (0.90–1.15s) */
+  .career-diagram--play .cd-era-3      { animation: cd-fade 0.25s ease-out 0.90s both, cd-block-draw 0.35s ease-out 0.90s both; }
+  .career-diagram--play .cd-annot.cd-annot-3,
+  .career-diagram--play .cd-annot2.cd-annot-3 { animation: cd-fade 0.20s ease-out 1.10s both; }
+  .career-diagram--play .cd-trans-3    { animation: cd-fade 0.08s ease-out 1.20s both, cd-line-draw 0.08s ease-out 1.20s both; }
 
-/* Era 4 — In-house operator (1.25–1.50s) */
-.career-diagram--play .cd-era-4      { animation: cd-fade 0.25s ease-out 1.25s both, cd-block-draw 0.35s ease-out 1.25s both; }
-.career-diagram--play .cd-annot.cd-annot-4,
-.career-diagram--play .cd-annot2.cd-annot-4 { animation: cd-fade 0.20s ease-out 1.45s both; }
-.career-diagram--play .cd-trans-4    { animation: cd-fade 0.08s ease-out 1.55s both, cd-line-draw 0.08s ease-out 1.55s both; }
+  /* Era 4 — In-house operator (1.25–1.50s) */
+  .career-diagram--play .cd-era-4      { animation: cd-fade 0.25s ease-out 1.25s both, cd-block-draw 0.35s ease-out 1.25s both; }
+  .career-diagram--play .cd-annot.cd-annot-4,
+  .career-diagram--play .cd-annot2.cd-annot-4 { animation: cd-fade 0.20s ease-out 1.45s both; }
+  .career-diagram--play .cd-trans-4    { animation: cd-fade 0.08s ease-out 1.55s both, cd-line-draw 0.08s ease-out 1.55s both; }
 
-/* Era 5 — Founder NYC (1.60–1.85s) */
-.career-diagram--play .cd-era-5      { animation: cd-fade 0.25s ease-out 1.60s both, cd-block-draw 0.35s ease-out 1.60s both; }
-.career-diagram--play .cd-annot.cd-annot-5,
-.career-diagram--play .cd-annot2.cd-annot-5 { animation: cd-fade 0.20s ease-out 1.80s both; }
+  /* Era 5 — Founder NYC (1.60–1.85s) */
+  .career-diagram--play .cd-era-5      { animation: cd-fade 0.25s ease-out 1.60s both, cd-block-draw 0.35s ease-out 1.60s both; }
+  .career-diagram--play .cd-annot.cd-annot-5,
+  .career-diagram--play .cd-annot2.cd-annot-5 { animation: cd-fade 0.20s ease-out 1.80s both; }
 
-/* Era 6 — Founder MEL/MDE (2.00–2.35s, no transition — same band as era 5,
-   small pause after era 5 lands so the two Founder eras read sequentially). */
-.career-diagram--play .cd-era-6      { animation: cd-fade 0.25s ease-out 2.00s both, cd-block-draw 0.35s ease-out 2.00s both; }
-.career-diagram--play .cd-annot.cd-annot-6,
-.career-diagram--play .cd-annot2.cd-annot-6 { animation: cd-fade 0.20s ease-out 2.20s both; }
+  /* Era 6 — Founder MEL/MDE (2.00–2.35s, no transition — same band as era 5,
+     small pause after era 5 lands so the two Founder eras read sequentially). */
+  .career-diagram--play .cd-era-6      { animation: cd-fade 0.25s ease-out 2.00s both, cd-block-draw 0.35s ease-out 2.00s both; }
+  .career-diagram--play .cd-annot.cd-annot-6,
+  .career-diagram--play .cd-annot2.cd-annot-6 { animation: cd-fade 0.20s ease-out 2.20s both; }
 
-/* Medellín pin drop (2.35–2.70s) */
-.career-diagram--play .cd-mde { animation: cd-mde-drop 0.35s ease-out 2.35s both; }
+  /* Medellín pin drop (2.35–2.70s) */
+  .career-diagram--play .cd-mde { animation: cd-mde-drop 0.35s ease-out 2.35s both; }
+}
+
+/* Mobile layout — vertical staircase below 768px.
+   The desktop scroll wrapper is hidden; the mobile SVG takes its place.
+   Mode labels become full-weight near-black (left axis treatment).
+   Animation re-specified for top-down vertical sequencing. */
+@media (max-width: 767.98px) {
+  .career-diagram__scroll { display: none; }
+  .career-diagram__svg--mobile { display: block; }
+  .career-diagram__svg--mobile .cd-mode { font-weight: 400; fill: var(--c-body); }
+
+  /* Mode labels fade in 0.00–0.15s (all five at once) */
+  .career-diagram--play .cd-mode      { animation: cd-fade 0.15s ease-out 0.00s both; }
+
+  /* Era 1 — Student (0.15–0.50s): block draws, annotations fade */
+  .career-diagram--play .cd-era-1      { animation: cd-fade 0.25s ease-out 0.15s both, cd-block-draw 0.35s ease-out 0.15s both; }
+  .career-diagram--play .cd-annot.cd-annot-1,
+  .career-diagram--play .cd-annot2.cd-annot-1,
+  .career-diagram--play .cd-year-1     { animation: cd-fade 0.20s ease-out 0.30s both; }
+
+  /* Era 2 — Employee (0.55–0.90s) */
+  .career-diagram--play .cd-era-2      { animation: cd-fade 0.25s ease-out 0.55s both, cd-block-draw 0.35s ease-out 0.55s both; }
+  .career-diagram--play .cd-annot.cd-annot-2,
+  .career-diagram--play .cd-annot2.cd-annot-2,
+  .career-diagram--play .cd-year-2     { animation: cd-fade 0.20s ease-out 0.70s both; }
+
+  /* Era 3 — Remote contractor (0.95–1.30s) */
+  .career-diagram--play .cd-era-3      { animation: cd-fade 0.25s ease-out 0.95s both, cd-block-draw 0.35s ease-out 0.95s both; }
+  .career-diagram--play .cd-annot.cd-annot-3,
+  .career-diagram--play .cd-annot2.cd-annot-3,
+  .career-diagram--play .cd-year-3     { animation: cd-fade 0.20s ease-out 1.10s both; }
+
+  /* Era 4 — In-house operator (1.35–1.70s) */
+  .career-diagram--play .cd-era-4      { animation: cd-fade 0.25s ease-out 1.35s both, cd-block-draw 0.35s ease-out 1.35s both; }
+  .career-diagram--play .cd-annot.cd-annot-4,
+  .career-diagram--play .cd-annot2.cd-annot-4,
+  .career-diagram--play .cd-year-4     { animation: cd-fade 0.20s ease-out 1.50s both; }
+
+  /* Era 5 — Founder NYC (1.75–2.10s) */
+  .career-diagram--play .cd-era-5      { animation: cd-fade 0.25s ease-out 1.75s both, cd-block-draw 0.35s ease-out 1.75s both; }
+  .career-diagram--play .cd-annot.cd-annot-5,
+  .career-diagram--play .cd-annot2.cd-annot-5,
+  .career-diagram--play .cd-year-5     { animation: cd-fade 0.20s ease-out 1.90s both; }
+
+  /* Era 6 — Founder MEL/MDE (2.15–2.45s, smaller — same mode level) */
+  .career-diagram--play .cd-era-6      { animation: cd-fade 0.20s ease-out 2.15s both, cd-block-draw 0.30s ease-out 2.15s both; }
+  .career-diagram--play .cd-annot.cd-annot-6,
+  .career-diagram--play .cd-annot2.cd-annot-6,
+  .career-diagram--play .cd-year-6     { animation: cd-fade 0.18s ease-out 2.27s both; }
+
+  /* Medellín pin drop (2.50–2.65s, attached to Student era) */
+  .career-diagram--play .cd-mde        { animation: cd-mde-drop 0.20s ease-out 2.50s both; }
+}
 
 @keyframes cd-fade {
   from { opacity: 0; }
@@ -972,13 +1037,8 @@ main a:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 4px; 
   .section--background .career-diagram { margin-bottom: var(--s-6); }
   .section--background .bg-list { margin-top: var(--s-6); }
   .section--background .bg-row { padding: var(--s-2) 0; }
-  .career-diagram__scroll { padding-bottom: 4px; }
-  .career-diagram__scroll .career-diagram__svg {
-    width: 880px;
-    max-width: none;
-    aspect-ratio: 1280 / 400;
-    height: auto;
-  }
+  /* Mobile career-diagram horizontal scroll fallback removed — replaced
+     by the dedicated vertical mobile SVG handled in the 768px block. */
 }
 
 /* ============================================================

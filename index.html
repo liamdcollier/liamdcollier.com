@@ -343,7 +343,7 @@
     </header>
     <figure class="career-diagram">
       <div class="career-diagram__scroll">
-      <svg class="career-diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Career operating-mode diagram showing six eras from 2017 to 2026, progressing from student to employee to remote contractor to in-house operator to founder, with locations across Wellington, Auckland, Barcelona, Melbourne, New York, and Medellín.">
+      <svg class="career-diagram__svg career-diagram__svg--desktop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Career operating-mode diagram showing six eras from 2017 to 2026, progressing from student to employee to remote contractor to in-house operator to founder, with locations across Wellington, Auckland, Barcelona, Melbourne, New York, and Medellín.">
 
         <!-- EYEBROW -->
         <text class="cd-eyb" x="64" y="36">CAREER OPERATING MODE &#183; 2017&#8211;2026</text>
@@ -424,6 +424,61 @@
         </g>
       </svg>
       </div>
+      <svg class="career-diagram__svg career-diagram__svg--mobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 327 450" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" aria-label="Career operating-mode diagram showing six eras from 2017 to 2026, progressing from student to employee to remote contractor to in-house operator to founder, with locations across Wellington, Auckland, Barcelona, Melbourne, New York, and Medellín.">
+
+        <!-- EYEBROW -->
+        <text class="cd-eyb" x="0" y="24">CAREER OPERATING MODE &#183; 2017&#8211;2026</text>
+        <line class="cd-eyb-rule" x1="0" y1="38" x2="327" y2="38"/>
+
+        <!-- Student row (era 1) -->
+        <text class="cd-mode" x="0" y="84">Student</text>
+        <rect class="cd-era cd-era-1" pathLength="100" x="120" y="60" width="207" height="40"/>
+        <text class="cd-annot cd-annot-1" x="128" y="76">WLG &#183; VUW</text>
+        <text class="cd-year cd-year-1" x="319" y="76" text-anchor="end">(2017&#8211;2020)</text>
+        <text class="cd-annot2 cd-annot-1" x="128" y="91">Cert of Excellence &#183; A&#8722; GPA</text>
+
+        <!-- Medellín inline note attached to Student (wraps to 2 lines so the
+             full spec text fits within the 196px available width) -->
+        <g class="cd-mde">
+          <circle class="cd-mde-dot" cx="124" cy="113" r="2"/>
+          <text class="cd-mde-text" x="131" y="116">Medell&#237;n exchange &#183; 2018</text>
+          <text class="cd-mde-text" x="131" y="128">Spanish acquisition begins</text>
+        </g>
+
+        <!-- Employee row (era 2) -->
+        <text class="cd-mode" x="0" y="178">Employee</text>
+        <rect class="cd-era cd-era-2" pathLength="100" x="120" y="154" width="207" height="40"/>
+        <text class="cd-annot cd-annot-2" x="128" y="170">AKL &#183; BDO</text>
+        <text class="cd-year cd-year-2" x="319" y="170" text-anchor="end">(2020&#8211;2022)</text>
+        <text class="cd-annot2 cd-annot-2" x="128" y="185">4 roles &#183; 18 mo &#183; 250+ applicant pool</text>
+
+        <!-- Remote contractor row (era 3) -->
+        <text class="cd-mode" x="0" y="242">Remote contractor</text>
+        <rect class="cd-era cd-era-3" pathLength="100" x="120" y="218" width="207" height="40"/>
+        <text class="cd-annot cd-annot-3" x="128" y="234">BCN &#183; BDO</text>
+        <text class="cd-year cd-year-3" x="319" y="234" text-anchor="end">(2022&#8211;2023)</text>
+        <text class="cd-annot2 cd-annot-3" x="128" y="249">negotiated remote &#183; Spain anchor</text>
+
+        <!-- In-house operator row (era 4) -->
+        <text class="cd-mode" x="0" y="306">In-house operator</text>
+        <rect class="cd-era cd-era-4" pathLength="100" x="120" y="282" width="207" height="40"/>
+        <text class="cd-annot cd-annot-4" x="128" y="298">MEL &#183; law firm</text>
+        <text class="cd-year cd-year-4" x="319" y="298" text-anchor="end">(2023&#8211;2024)</text>
+        <text class="cd-annot2 cd-annot-4" x="128" y="313">130-staff &#183; board exposure &#183; Rem Cttee</text>
+
+        <!-- Founder NYC row (era 5) -->
+        <text class="cd-mode" x="0" y="370">Founder</text>
+        <rect class="cd-era cd-era-5" pathLength="100" x="120" y="346" width="207" height="40"/>
+        <text class="cd-annot cd-annot-5" x="128" y="362">NYC &#183; Infraxus</text>
+        <text class="cd-year cd-year-5" x="319" y="362" text-anchor="end">(2025)</text>
+        <text class="cd-annot2 cd-annot-5" x="128" y="377">Lower Manhattan &#183; 4 mo &#183; founded</text>
+
+        <!-- Founder MEL/MDE row (era 6, no mode label, 8px gap from NYC) -->
+        <rect class="cd-era cd-era-6" pathLength="100" x="120" y="394" width="207" height="40"/>
+        <text class="cd-annot cd-annot-6" x="128" y="410">MEL/MDE &#183; Infraxus</text>
+        <text class="cd-year cd-year-6" x="319" y="410" text-anchor="end">(2026&#8211;)</text>
+        <text class="cd-annot2 cd-annot-6" x="128" y="425">AU/US ops &#183; split-base</text>
+      </svg>
       <figcaption>Six eras across four countries and three currencies. Each step represents a deliberate progression in operating mode.</figcaption>
     </figure>
     <dl class="bg-list">
@@ -503,6 +558,20 @@
 (function () {
   var fig = document.querySelector('.career-diagram');
   if (!fig) return;
+  var d = fig.querySelector('.career-diagram__svg--desktop');
+  var m = fig.querySelector('.career-diagram__svg--mobile');
+  var mq = window.matchMedia ? window.matchMedia('(max-width: 767.98px)') : null;
+  function syncAria() {
+    if (!mq) return;
+    var isMobile = mq.matches;
+    if (d) d.setAttribute('aria-hidden', isMobile ? 'true' : 'false');
+    if (m) m.setAttribute('aria-hidden', isMobile ? 'false' : 'true');
+  }
+  syncAria();
+  if (mq) {
+    if (mq.addEventListener) mq.addEventListener('change', syncAria);
+    else if (mq.addListener) mq.addListener(syncAria);
+  }
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced || !('IntersectionObserver' in window)) return;
   fig.classList.add('career-diagram--prepared');
