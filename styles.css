@@ -631,26 +631,33 @@ body {
 
 .detail-list {
   display: grid;
-  row-gap: var(--s-2);
+  row-gap: var(--s-3);
   font-size: 16px;
-  max-width: 64ch;
+  max-width: 70ch;
 }
 .detail-list li {
-  position: relative;
-  padding-left: 24px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  column-gap: var(--s-3);
+  align-items: baseline;
+  border-top: 1px solid var(--c-rule);
+  padding-top: var(--s-2);
   color: var(--c-body);
   text-wrap: pretty;
 }
-.detail-list li::before {
-  content: "·";
-  position: absolute;
-  left: 6px;
-  top: -2px;
-  color: var(--c-accent);
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1.55;
+.detail-list li:last-child {
+  border-bottom: 1px solid var(--c-rule);
+  padding-bottom: var(--s-2);
 }
+.detail__tag {
+  font-family: var(--f-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--c-accent);
+}
+.detail__fact { display: block; }
 
 /* ============================================================
    Section 8 — Contact
@@ -786,6 +793,11 @@ main a:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 4px; 
     grid-template-columns: 1fr;
     gap: 6px;
     padding: var(--s-2) 0;
+  }
+
+  .detail-list li {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .questions li { font-size: 16px; }
