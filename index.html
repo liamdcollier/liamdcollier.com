@@ -141,12 +141,166 @@
       <h2 class="section__title" id="diag-title">Architecture</h2>
     </header>
     <figure class="diagram">
-      <!-- PLACEHOLDER. Replace inline contents of div.diagram__placeholder
-           below with the contents of images/architecture-diagram.svg
-           when the final diagram is supplied. -->
-      <div class="diagram__placeholder" role="img" aria-label="Placeholder for the Infraxus sales orchestration architecture diagram. The final diagram will be supplied in a future session.">
-        <span class="diagram__label">Diagram pending</span>
+      <div class="diagram__scroll">
+      <svg class="diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Architecture diagram of the Infraxus sales orchestration system. Sources (Sales Nav, Evaboot/Emelia, Dropbox) feed a six-stage 5-minute cron ingestion pipeline (format dispatch, dedup, Apify enrichment, Sonnet 4.6 qualifier, Apollo bulk match, HubSpot write). HubSpot fans out to two channels: Instantly for email and HeyReach for LinkedIn. Replies arrive at webhooks and flow through a two-pass orchestration: Sonnet 4.6 posture pre-classify, then Opus 4.7 classify-and-draft, into the Telegram review bot, then dispatcher, which sends back through the channels. Beneath everything, a reasoning substrate of the Supabase interactions table, a deferred 4-hour Opus reasoning loop, and Pushover alerts.">
+        <defs>
+          <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A1A1A"/></marker>
+        </defs>
+
+        <text class="diag-eyb" x="64" y="36">INFRAXUS · SALES ORCHESTRATION ARCHITECTURE</text>
+        <line class="diag-ru" x1="64" y1="50" x2="1216" y2="50"/>
+
+        <text class="diag-col" x="64"  y="78">SOURCES</text>
+        <text class="diag-col" x="354" y="78">INGESTION · 5-MIN CRON</text>
+        <text class="diag-col" x="664" y="78">CHANNELS</text>
+        <text class="diag-col" x="934" y="78">REPLY ORCHESTRATION</text>
+
+        <!-- Sources -->
+        <rect class="diag-b" x="64"  y="96"  width="220" height="56" rx="2"/>
+        <text class="diag-lbl" x="80"  y="120">Sales Navigator</text>
+        <text class="diag-sub" x="80"  y="138">Operator-built saved searches</text>
+        <rect class="diag-b" x="64"  y="166" width="220" height="56" rx="2"/>
+        <text class="diag-lbl" x="80"  y="190">Evaboot · Emelia</text>
+        <text class="diag-sub" x="80"  y="208">CSV / XLSX export</text>
+        <rect class="diag-b" x="64"  y="236" width="220" height="56" rx="2"/>
+        <text class="diag-lbl" x="80"  y="260">Dropbox /CSV-inbox</text>
+        <text class="diag-sub" x="80"  y="278">cohort__channel__campaign</text>
+
+        <line class="diag-a" x1="174" y1="152" x2="174" y2="164" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="174" y1="222" x2="174" y2="234" marker-end="url(#ah)"/>
+        <path class="diag-a" d="M284,264 L319,264 L319,120 L352,120" marker-end="url(#ah)"/>
+
+        <!-- Ingestion -->
+        <rect class="diag-b" x="354" y="96"  width="240" height="48" rx="2"/>
+        <text class="diag-num" x="368" y="115">01</text>
+        <text class="diag-lbl" x="394" y="115">Format dispatch</text>
+        <text class="diag-sub" x="368" y="133">Magic byte: PK → XLSX, else CSV</text>
+
+        <rect class="diag-b" x="354" y="152" width="240" height="48" rx="2"/>
+        <text class="diag-num" x="368" y="171">02</text>
+        <text class="diag-lbl" x="394" y="171">Dedup</text>
+        <text class="diag-sub" x="368" y="189">Supabase 30-day · HubSpot search</text>
+
+        <rect class="diag-b" x="354" y="208" width="240" height="48" rx="2"/>
+        <text class="diag-num" x="368" y="227">03</text>
+        <text class="diag-lbl" x="394" y="227">Apify enrichment</text>
+        <text class="diag-sub" x="368" y="245">LinkedIn profile + SERP · fail-CLOSED</text>
+
+        <rect class="diag-b" x="354" y="264" width="240" height="48" rx="2"/>
+        <circle class="diag-live" cx="582" cy="276" r="3.2"/>
+        <text class="diag-num" x="368" y="283">04</text>
+        <text class="diag-lbl" x="394" y="283">Sonnet 4.6 qualifier</text>
+        <text class="diag-sub" x="368" y="301">OpenRouter · 35 s timeout</text>
+
+        <rect class="diag-b" x="354" y="320" width="240" height="48" rx="2"/>
+        <circle class="diag-live" cx="582" cy="332" r="3.2"/>
+        <text class="diag-num" x="368" y="339">05</text>
+        <text class="diag-lbl" x="394" y="339">Apollo people/bulk_match</text>
+        <text class="diag-sub" x="368" y="357">instantly cohorts only · fail-OPEN</text>
+
+        <rect class="diag-b" x="354" y="376" width="240" height="48" rx="2"/>
+        <circle class="diag-live" cx="582" cy="388" r="3.2"/>
+        <text class="diag-num" x="368" y="395">06</text>
+        <text class="diag-lbl" x="394" y="395">HubSpot write</text>
+        <text class="diag-sub" x="368" y="413">Bucketed enums · 10 custom props</text>
+
+        <line class="diag-a" x1="474" y1="144" x2="474" y2="150" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="474" y1="200" x2="474" y2="206" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="474" y1="256" x2="474" y2="262" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="474" y1="312" x2="474" y2="318" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="474" y1="368" x2="474" y2="374" marker-end="url(#ah)"/>
+
+        <path class="diag-a" d="M594,400 L626,400 L626,208 L662,208" marker-end="url(#ah)"/>
+        <path class="diag-a" d="M594,400 L626,400 L626,296 L662,296" marker-end="url(#ah)"/>
+
+        <!-- Channels -->
+        <rect class="diag-b" x="664" y="180" width="200" height="56" rx="2"/>
+        <circle class="diag-live" cx="852" cy="194" r="3.2"/>
+        <text class="diag-lbl" x="680" y="204">Instantly</text>
+        <text class="diag-sub" x="680" y="222">Email · 12 inboxes · 2.1k/wk</text>
+
+        <rect class="diag-b" x="664" y="268" width="200" height="56" rx="2"/>
+        <circle class="diag-live" cx="852" cy="282" r="3.2"/>
+        <text class="diag-lbl" x="680" y="292">HeyReach</text>
+        <text class="diag-sub" x="680" y="310">LinkedIn · 175 connects/wk</text>
+
+        <path class="diag-a" d="M864,208 L898,208 L898,120 L932,120" marker-end="url(#ah)"/>
+        <path class="diag-a" d="M864,296 L898,296 L898,120 L932,120"/>
+
+        <!-- Orchestration -->
+        <rect class="diag-b"  x="934" y="96"  width="282" height="48" rx="2"/>
+        <circle class="diag-live" cx="1204" cy="108" r="3.2"/>
+        <text class="diag-lbl" x="950" y="115">Webhooks endpoint</text>
+        <text class="diag-sub" x="950" y="133">HMAC-verified · idempotent</text>
+
+        <rect class="diag-b"  x="934" y="152" width="282" height="48" rx="2"/>
+        <text class="diag-lbl" x="950" y="171">Pass 1 · Sonnet 4.6</text>
+        <text class="diag-sub" x="950" y="189">Posture pre-classify (~$0.001)</text>
+
+        <rect class="diag-ba" x="934" y="208" width="282" height="48" rx="2"/>
+        <circle class="diag-live" cx="1204" cy="220" r="3.2"/>
+        <text class="diag-lbl" x="950" y="227">Pass 2 · Opus 4.7</text>
+        <text class="diag-sub" x="950" y="245">classify_and_draft → JSON · temp 0.3</text>
+
+        <rect class="diag-b"  x="934" y="264" width="282" height="48" rx="2"/>
+        <circle class="diag-live" cx="1204" cy="276" r="3.2"/>
+        <text class="diag-lbl" x="950" y="283">Telegram bot</text>
+        <text class="diag-sub" x="950" y="301">Send · Edit (Mini App) · Skip</text>
+
+        <rect class="diag-b"  x="934" y="320" width="282" height="48" rx="2"/>
+        <circle class="diag-live" cx="1204" cy="332" r="3.2"/>
+        <text class="diag-lbl" x="950" y="339">Dispatcher</text>
+        <text class="diag-sub" x="950" y="357">30 s tick → channel API</text>
+
+        <line class="diag-a" x1="1075" y1="144" x2="1075" y2="150" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="1075" y1="200" x2="1075" y2="206" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="1075" y1="256" x2="1075" y2="262" marker-end="url(#ah)"/>
+        <line class="diag-a" x1="1075" y1="312" x2="1075" y2="318" marker-end="url(#ah)"/>
+
+        <path class="diag-ad" d="M934,344 L908,344 L908,212 L866,212" marker-end="url(#ah)"/>
+        <text class="diag-sub" x="894" y="358" text-anchor="end">dispatch</text>
+
+        <!-- Reasoning substrate -->
+        <line class="diag-ru2" x1="64" y1="446" x2="1216" y2="446"/>
+        <text class="diag-eyb" x="64" y="468">REASONING SUBSTRATE</text>
+        <line class="diag-ru" x1="64" y1="478" x2="1216" y2="478"/>
+
+        <rect class="diag-b" x="64"  y="496" width="370" height="80" rx="2"/>
+        <text class="diag-lbl" x="80"  y="520">interactions table · Lake</text>
+        <text class="diag-sub" x="80"  y="540">Supabase · JSONB content · timestamp not created_at</text>
+        <text class="diag-sub" x="80"  y="556">prospect_qualified · email_reply · reply_drafted</text>
+        <text class="diag-sub" x="80"  y="568">reply_sent · operator_action · deal_stage_change</text>
+
+        <rect class="diag-b" x="454" y="496" width="370" height="80" rx="2"/>
+        <circle class="diag-prod" cx="812" cy="510" r="3.2"/>
+        <text class="diag-lbl" x="470" y="520">Opus 4.7 reasoning loop</text>
+        <text class="diag-sub" x="470" y="540">Every 4 h pattern detection · deferred</text>
+        <text class="diag-sub" x="470" y="556">Reads the lake · writes summaries up</text>
+        <text class="diag-sub" x="470" y="568">Pushover briefings · risk surfacing</text>
+
+        <rect class="diag-b" x="844" y="496" width="372" height="80" rx="2"/>
+        <circle class="diag-live" cx="1204" cy="510" r="3.2"/>
+        <text class="diag-lbl" x="860" y="520">Pushover · APScheduler · 9 crons</text>
+        <text class="diag-sub" x="860" y="540">Bogota TZ · one-way operator alerts</text>
+        <text class="diag-sub" x="860" y="556">starvation · lake_health · ingest summaries</text>
+        <text class="diag-sub" x="860" y="568">dispatcher errors · weekly briefing</text>
+
+        <line class="diag-ad" x1="474" y1="424" x2="474" y2="495"/>
+        <line class="diag-ad" x1="1075" y1="368" x2="1075" y2="495"/>
+
+        <g transform="translate(64, 600)">
+          <circle class="diag-live" cx="6" cy="6" r="3.2"/>
+          <text class="diag-sub" x="18" y="10">Live</text>
+          <circle class="diag-prod" cx="80" cy="6" r="3.2"/>
+          <text class="diag-sub" x="92" y="10">Deferred</text>
+          <line class="diag-a" x1="180" y1="6" x2="210" y2="6" marker-end="url(#ah)"/>
+          <text class="diag-sub" x="218" y="10">Primary flow</text>
+          <line class="diag-ad" x1="320" y1="6" x2="350" y2="6" marker-end="url(#ah)"/>
+          <text class="diag-sub" x="358" y="10">Dispatch / write-back</text>
+        </g>
+      </svg>
       </div>
+      <p class="diagram__scroll-hint" aria-hidden="true">Scroll for detail →</p>
       <figcaption>The Infraxus sales orchestration architecture, simplified.</figcaption>
     </figure>
   </div>

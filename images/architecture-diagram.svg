@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Architecture diagram of the Infraxus sales orchestration system. Sources (Sales Nav, Evaboot/Emelia, Dropbox) feed a six-stage 5-minute cron ingestion pipeline (format dispatch, dedup, Apify enrichment, Sonnet 4.6 qualifier, Apollo bulk match, HubSpot write). HubSpot fans out to two channels: Instantly for email and HeyReach for LinkedIn. Replies arrive at webhooks and flow through a two-pass orchestration: Sonnet 4.6 posture pre-classify, then Opus 4.7 classify-and-draft, into the Telegram review bot, then dispatcher, which sends back through the channels. Beneath everything, a reasoning substrate of the Supabase interactions table, a deferred 4-hour Opus reasoning loop, and Pushover alerts.">
+<title>Infraxus · Sales orchestration architecture</title>
+<style>
+  .b{stroke:#1A1A1A;fill:#FBF6EC;stroke-width:1.2}
+  .ba{stroke:#1E50FF;fill:#FBF6EC;stroke-width:1.4}
+  .a{stroke:#1A1A1A;fill:none;stroke-width:1.2}
+  .ad{stroke:#1A1A1A;fill:none;stroke-width:1;stroke-dasharray:4 3}
+  .ru{stroke:#E8DEC9;stroke-width:1}
+  .ru2{stroke:#D9CDB1;stroke-width:1}
+  .lbl{font-family:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;font-weight:600;fill:#0A0A0A;letter-spacing:-0.005em}
+  .sub{font-family:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:11px;font-weight:400;fill:#6B6B6B}
+  .col{font-family:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:11px;font-weight:600;fill:#1E50FF;letter-spacing:0.18em}
+  .eyb{font-family:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:11px;font-weight:600;fill:#6B6B6B;letter-spacing:0.18em}
+  .num{font-family:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:10px;font-weight:600;fill:#6B6B6B}
+  .live{fill:#10B981}
+  .prod{fill:#F59E0B}
+</style>
+<defs>
+  <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A1A1A"/></marker>
+  <marker id="ah2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3.5 L0,7 z" fill="#1E50FF"/></marker>
+</defs>
+
+<!-- TITLE -->
+<text class="eyb" x="64" y="36">INFRAXUS · SALES ORCHESTRATION ARCHITECTURE</text>
+<line class="ru" x1="64" y1="50" x2="1216" y2="50"/>
+
+<!-- COLUMN HEADERS -->
+<text class="col" x="64"  y="78">SOURCES</text>
+<text class="col" x="354" y="78">INGESTION · 5-MIN CRON</text>
+<text class="col" x="664" y="78">CHANNELS</text>
+<text class="col" x="934" y="78">REPLY ORCHESTRATION</text>
+
+<!-- ============================================================
+     SOURCES (x=64, w=220)
+     ============================================================ -->
+<g>
+  <rect class="b" x="64"  y="96"  width="220" height="56" rx="2"/>
+  <text class="lbl" x="80"  y="120">Sales Navigator</text>
+  <text class="sub" x="80"  y="138">Operator-built saved searches</text>
+
+  <rect class="b" x="64"  y="166" width="220" height="56" rx="2"/>
+  <text class="lbl" x="80"  y="190">Evaboot · Emelia</text>
+  <text class="sub" x="80"  y="208">CSV / XLSX export</text>
+
+  <rect class="b" x="64"  y="236" width="220" height="56" rx="2"/>
+  <text class="lbl" x="80"  y="260">Dropbox /CSV-inbox</text>
+  <text class="sub" x="80"  y="278">cohort__channel__campaign</text>
+</g>
+
+<!-- vertical arrows within sources -->
+<line class="a" x1="174" y1="152" x2="174" y2="164" marker-end="url(#ah)"/>
+<line class="a" x1="174" y1="222" x2="174" y2="234" marker-end="url(#ah)"/>
+
+<!-- Sources -> Ingestion (Dropbox right -> Format dispatch left) -->
+<path class="a" d="M284,264 L319,264 L319,120 L352,120" marker-end="url(#ah)"/>
+
+<!-- ============================================================
+     INGESTION (x=354, w=240, h=48, gap=8)
+     ============================================================ -->
+<g>
+  <rect class="b" x="354" y="96"  width="240" height="48" rx="2"/>
+  <text class="num" x="368" y="115">01</text>
+  <text class="lbl" x="394" y="115">Format dispatch</text>
+  <text class="sub" x="368" y="133">Magic byte: PK → XLSX, else CSV</text>
+
+  <rect class="b" x="354" y="152" width="240" height="48" rx="2"/>
+  <text class="num" x="368" y="171">02</text>
+  <text class="lbl" x="394" y="171">Dedup</text>
+  <text class="sub" x="368" y="189">Supabase 30-day · HubSpot search</text>
+
+  <rect class="b" x="354" y="208" width="240" height="48" rx="2"/>
+  <text class="num" x="368" y="227">03</text>
+  <text class="lbl" x="394" y="227">Apify enrichment</text>
+  <text class="sub" x="368" y="245">LinkedIn profile + Google SERP · fail-CLOSED</text>
+
+  <rect class="b" x="354" y="264" width="240" height="48" rx="2"/>
+  <circle class="live" cx="582" cy="276" r="3.2"/>
+  <text class="num" x="368" y="283">04</text>
+  <text class="lbl" x="394" y="283">Sonnet 4.6 qualifier</text>
+  <text class="sub" x="368" y="301">OpenRouter · 35s timeout</text>
+
+  <rect class="b" x="354" y="320" width="240" height="48" rx="2"/>
+  <circle class="live" cx="582" cy="332" r="3.2"/>
+  <text class="num" x="368" y="339">05</text>
+  <text class="lbl" x="394" y="339">Apollo people/bulk_match</text>
+  <text class="sub" x="368" y="357">instantly cohorts only · fail-OPEN</text>
+
+  <rect class="b" x="354" y="376" width="240" height="48" rx="2"/>
+  <circle class="live" cx="582" cy="388" r="3.2"/>
+  <text class="num" x="368" y="395">06</text>
+  <text class="lbl" x="394" y="395">HubSpot write</text>
+  <text class="sub" x="368" y="413">Bucketed enums · 10 custom props</text>
+</g>
+
+<!-- vertical arrows within ingestion -->
+<line class="a" x1="474" y1="144" x2="474" y2="150" marker-end="url(#ah)"/>
+<line class="a" x1="474" y1="200" x2="474" y2="206" marker-end="url(#ah)"/>
+<line class="a" x1="474" y1="256" x2="474" y2="262" marker-end="url(#ah)"/>
+<line class="a" x1="474" y1="312" x2="474" y2="318" marker-end="url(#ah)"/>
+<line class="a" x1="474" y1="368" x2="474" y2="374" marker-end="url(#ah)"/>
+
+<!-- Ingestion -> Channels: HubSpot write fans to Instantly + HeyReach -->
+<path class="a" d="M594,400 L626,400 L626,208 L662,208" marker-end="url(#ah)"/>
+<path class="a" d="M594,400 L626,400 L626,296 L662,296" marker-end="url(#ah)"/>
+
+<!-- ============================================================
+     CHANNELS (x=664, w=200, h=56)
+     ============================================================ -->
+<g>
+  <rect class="b" x="664" y="180" width="200" height="56" rx="2"/>
+  <circle class="live" cx="852" cy="194" r="3.2"/>
+  <text class="lbl" x="680" y="204">Instantly</text>
+  <text class="sub" x="680" y="222">Email · 12 inboxes · 2.1k/wk</text>
+
+  <rect class="b" x="664" y="268" width="200" height="56" rx="2"/>
+  <circle class="live" cx="852" cy="282" r="3.2"/>
+  <text class="lbl" x="680" y="292">HeyReach</text>
+  <text class="sub" x="680" y="310">LinkedIn · 175 connects/wk</text>
+</g>
+
+<!-- Channels -> Webhooks (replies inbound) -->
+<path class="a" d="M864,208 L898,208 L898,120 L932,120" marker-end="url(#ah)"/>
+<path class="a" d="M864,296 L898,296 L898,120 L932,120"/>
+
+<!-- ============================================================
+     ORCHESTRATION (x=934, w=282, h=48, gap=8)
+     ============================================================ -->
+<g>
+  <rect class="b" x="934" y="96"  width="282" height="48" rx="2"/>
+  <circle class="live" cx="1204" cy="108" r="3.2"/>
+  <text class="lbl" x="950" y="115">Webhooks endpoint</text>
+  <text class="sub" x="950" y="133">HMAC-verified · idempotent</text>
+
+  <rect class="b" x="934" y="152" width="282" height="48" rx="2"/>
+  <text class="lbl" x="950" y="171">Pass 1 · Sonnet 4.6</text>
+  <text class="sub" x="950" y="189">Posture pre-classify (~$0.001)</text>
+
+  <rect class="ba" x="934" y="208" width="282" height="48" rx="2"/>
+  <circle class="live" cx="1204" cy="220" r="3.2"/>
+  <text class="lbl" x="950" y="227">Pass 2 · Opus 4.7</text>
+  <text class="sub" x="950" y="245">classify_and_draft → JSON · temp 0.3</text>
+
+  <rect class="b" x="934" y="264" width="282" height="48" rx="2"/>
+  <circle class="live" cx="1204" cy="276" r="3.2"/>
+  <text class="lbl" x="950" y="283">Telegram bot</text>
+  <text class="sub" x="950" y="301">Send · Edit (Mini App) · Skip</text>
+
+  <rect class="b" x="934" y="320" width="282" height="48" rx="2"/>
+  <circle class="live" cx="1204" cy="332" r="3.2"/>
+  <text class="lbl" x="950" y="339">Dispatcher</text>
+  <text class="sub" x="950" y="357">30 s tick → channel API</text>
+</g>
+
+<!-- vertical arrows within orchestration -->
+<line class="a" x1="1075" y1="144" x2="1075" y2="150" marker-end="url(#ah)"/>
+<line class="a" x1="1075" y1="200" x2="1075" y2="206" marker-end="url(#ah)"/>
+<line class="a" x1="1075" y1="256" x2="1075" y2="262" marker-end="url(#ah)"/>
+<line class="a" x1="1075" y1="312" x2="1075" y2="318" marker-end="url(#ah)"/>
+
+<!-- Dispatcher -> back to Channels (return path, dashed) -->
+<path class="ad" d="M934,344 L908,344 L908,212 L866,212" marker-end="url(#ah)"/>
+<text class="sub" x="884" y="358" text-anchor="end">dispatch</text>
+
+<!-- ============================================================
+     REASONING SUBSTRATE BAND (y=448-588)
+     ============================================================ -->
+<line class="ru2" x1="64" y1="446" x2="1216" y2="446"/>
+<text class="eyb" x="64" y="468">REASONING SUBSTRATE</text>
+<line class="ru" x1="64" y1="478" x2="1216" y2="478"/>
+
+<g>
+  <rect class="b" x="64"  y="496" width="370" height="76" rx="2"/>
+  <text class="lbl" x="80"  y="520">interactions table · Lake</text>
+  <text class="sub" x="80"  y="540">Supabase · JSONB content · timestamp not created_at</text>
+  <text class="sub" x="80"  y="556">prospect_qualified · email_reply · reply_drafted · reply_sent</text>
+  <text class="sub" x="80"  y="567">operator_action · recovery_response · deal_stage_change</text>
+
+  <rect class="b" x="454" y="496" width="370" height="76" rx="2"/>
+  <circle class="prod" cx="812" cy="510" r="3.2"/>
+  <text class="lbl" x="470" y="520">Opus 4.7 reasoning loop</text>
+  <text class="sub" x="470" y="540">Every 4 h pattern detection · deferred</text>
+  <text class="sub" x="470" y="556">Pushover briefings · risk surfacing</text>
+  <text class="sub" x="470" y="567">Reads the lake; writes summaries up</text>
+
+  <rect class="b" x="844" y="496" width="372" height="76" rx="2"/>
+  <circle class="live" cx="1204" cy="510" r="3.2"/>
+  <text class="lbl" x="860" y="520">Pushover · APScheduler · 9 crons</text>
+  <text class="sub" x="860" y="540">Bogota TZ · one-way operator alerts</text>
+  <text class="sub" x="860" y="556">starvation · lake_health · ingest summaries</text>
+  <text class="sub" x="860" y="567">dispatcher errors · weekly briefing</text>
+</g>
+
+<!-- substrate write-down indicators (dashed, key components) -->
+<line class="ad" x1="474" y1="424" x2="474" y2="495"/>
+<line class="ad" x1="1075" y1="368" x2="1075" y2="495"/>
+
+<!-- bottom legend -->
+<g transform="translate(64, 600)">
+  <circle class="live" cx="6" cy="6" r="3.2"/>
+  <text class="sub" x="18" y="10">Live</text>
+  <circle class="prod" cx="80" cy="6" r="3.2"/>
+  <text class="sub" x="92" y="10">Deferred</text>
+  <line class="a" x1="180" y1="6" x2="210" y2="6" marker-end="url(#ah)"/>
+  <text class="sub" x="218" y="10">Primary flow</text>
+  <line class="ad" x1="320" y1="6" x2="350" y2="6" marker-end="url(#ah)"/>
+  <text class="sub" x="358" y="10">Dispatch / write-back</text>
+</g>
+</svg>
