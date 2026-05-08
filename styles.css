@@ -395,6 +395,15 @@ body {
    Each system is a designed row: name | status pill | description.
    ============================================================ */
 
+.section__intro {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--c-body);
+  max-width: 64ch;
+  text-wrap: pretty;
+  margin: 0 0 var(--s-4);
+}
+
 .systems {
   display: grid;
   row-gap: var(--s-3);
